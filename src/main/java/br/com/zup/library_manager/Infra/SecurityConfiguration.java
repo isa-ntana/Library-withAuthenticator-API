@@ -40,7 +40,14 @@ public class SecurityConfiguration {
                         authorize.requestMatchers(HttpMethod.POST, "/user").permitAll();
                         authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
 
+                        authorize.requestMatchers(HttpMethod.GET, "/book/**", "/author/**").permitAll();
+                        authorize.requestMatchers(HttpMethod.GET, "/book/{id}", "/author/{id}").permitAll();
 
+                        authorize.requestMatchers(HttpMethod.POST, "/book/**", "/author/**").hasRole("ADMIN");
+                        authorize.requestMatchers(HttpMethod.PUT, "/book/**", "/author/**").hasRole("ADMIN");
+                        authorize.requestMatchers(HttpMethod.DELETE, "/book/**", "/author/**").hasRole("ADMIN");
+
+                        authorize.anyRequest().authenticated();
                     }).httpBasic(Customizer.withDefaults());
 
             http.exceptionHandling( exception -> exception
