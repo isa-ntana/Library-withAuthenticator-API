@@ -25,15 +25,15 @@ public class BookController {
     public Book findBookById(@PathVariable Long bookId) { return bookService.findBookById(bookId); }
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole ('ADMIN')")
     public Book addBook(@RequestBody @Valid BookDTO bookDTO) { return bookService.saveBook(BookMapper.fromBookDTO(bookDTO)); }
 
     @DeleteMapping("/{bookId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole ('ADMIN')")
     public void deleteBookById(@PathVariable Long bookId) { bookService.deleteBook(bookId);}
 
     @PutMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole ('ADMIN')")
     public Book updateBook(@RequestBody @Valid BookUpdateDTO bookUpdateDTO){
         return bookService.updateBook(BookMapper.fromBookUpdatedDTO(bookUpdateDTO));
     }

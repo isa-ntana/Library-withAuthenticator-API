@@ -25,17 +25,17 @@ public class AuthorController {
     public Author findAuthorById(@PathVariable Long authorId) { return authorService.findAuthorById(authorId); }
 
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole ('ADMIN')")
     public Author addAuthor(@RequestBody @Valid AuthorDTO authorDTO) {
         return authorService.saveAuthor(AuthorMapper.fromAuthorDTO(authorDTO));
     }
 
     @DeleteMapping("/{authorId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole ('ADMIN')")
     public void deleteAuthorById(@PathVariable Long authorId) { authorService.deleteAuthor(authorId); }
 
     @PutMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole ('ADMIN')")
     public Author updateAuthor(@RequestBody @Valid AuthorUpdateDTO authorUpdateDTO){
         return authorService.updateAuthor(AuthorMapper.fromAuthorUpdateDTO(authorUpdateDTO));
     }
